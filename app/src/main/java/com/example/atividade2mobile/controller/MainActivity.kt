@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,12 +30,13 @@ class MainActivity : AppCompatActivity() {
         emptyTextView = findViewById(R.id.tvEmpty)
         FilmeDAO = FilmeDao(this)
 
+        saveChar()
         listAllFilmes()
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val selectedChar = parent.getItemAtPosition(position) as FilmeModel
-            val intent = Intent(this, NewFilme::class.java).apply {
-                putExtra("charID", selectedChar.id)
+            val intent = Intent(this, DetailActivity::class.java).apply {
+                putExtra("filmeID", selectedChar.id)
             }
             startActivity(intent)
         }
@@ -57,7 +59,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun newFilme(view: View){
-        val intent = Intent(this, NewFilme::class.java)
+        val intent = Intent(this, DetailActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun pesquisarFilme(view: View){
+        val intent = Intent(this, QueryActivity::class.java)
         startActivity(intent)
     }
 
@@ -65,4 +72,24 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         listAllFilmes()
     }
+
+    fun saveChar(){
+                //Inserção de um novo personagem
+                val newChar = FilmeModel(
+                    name = "Duro de Matar",
+                    director = "John McTiernan",
+                    year = 1988
+                )
+                FilmeDAO.addFilme(newChar)
+                Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
+
+        val newChar2 = FilmeModel(
+            name = "Vingadores",
+            director = "John McTiernan",
+            year = 1988
+        )
+        FilmeDAO.addFilme(newChar2)
+        Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
+    }
+
 }
