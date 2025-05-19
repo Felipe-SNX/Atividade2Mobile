@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
         listAllFilmes()
 
         listView.setOnItemClickListener { parent, view, position, id ->
-            val selectedChar = parent.getItemAtPosition(position) as FilmeModel
+            val selectedFilme = parent.getItemAtPosition(position) as FilmeModel
             val intent = Intent(this, DetailActivity::class.java).apply {
-                putExtra("filmeID", selectedChar.id)
+                putExtra("filmeID", selectedFilme.id)
             }
             startActivity(intent)
         }
