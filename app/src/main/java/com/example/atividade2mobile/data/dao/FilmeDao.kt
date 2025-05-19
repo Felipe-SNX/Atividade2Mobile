@@ -24,33 +24,33 @@ class FilmeDao (private val context: Context){
     fun getAllFilmes(): List<FilmeModel>{
         val db = dbHelper.readableDatabase
         val cursor: Cursor = db.query(DBHelper.TABLE_NAME, null, null, null, null, null, null)
-        val filmList = mutableListOf<FilmeModel>()
+        val filmeList = mutableListOf<FilmeModel>()
         while(cursor.moveToNext()){
             val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
             val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
             val director = cursor.getString(cursor.getColumnIndexOrThrow("director"))
             val year = cursor.getInt(cursor.getColumnIndexOrThrow("year"))
-            filmList.add(FilmeModel(id,name,director,year))
+            filmeList.add(FilmeModel(id,name,director,year))
         }
         cursor.close()
         db.close()
-        return filmList
+        return filmeList
     }
 
     fun getFilmeById(id: Int): FilmeModel? {
         val db = dbHelper.readableDatabase
         val cursor: Cursor = db.query(DBHelper.TABLE_NAME, null, "id=?", arrayOf(id.toString()), null, null, null)
 
-        var film: FilmeModel? = null
+        var filme: FilmeModel? = null
         if(cursor.moveToFirst()){
             val name = cursor.getString(cursor.getColumnIndexOrThrow("name"))
             val director = cursor.getString(cursor.getColumnIndexOrThrow("director"))
             val year = cursor.getInt(cursor.getColumnIndexOrThrow("year"))
-            film = FilmeModel(id, name, director, year)
+            filme = FilmeModel(id, name, director, year)
         }
         cursor.close()
         db.close()
-        return film
+        return filme
     }
 
     fun updateFilme(filme: FilmeModel): Int {
