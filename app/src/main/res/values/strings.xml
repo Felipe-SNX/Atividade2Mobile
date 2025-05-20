@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Atividade2Mobile</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_delete">Excluir</string>
+    <string name="hint_name">Nome</string>
+    <string name="hint_director">Diretor</string>
+    <string name="hint_year">Ano</string>
 </resources>
