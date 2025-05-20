@@ -4,4 +4,6 @@
     <string name="hint_name">Nome</string>
     <string name="hint_director">Diretor</string>
     <string name="hint_year">Ano</string>
+    <string name="app_name">Atividade2Mobile</string>
+
 </resources>

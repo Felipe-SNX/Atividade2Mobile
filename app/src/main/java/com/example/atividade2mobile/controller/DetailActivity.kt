@@ -12,7 +12,7 @@ import com.example.atividade2mobile.model.FilmeModel
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var filmeDao: FilmeDao
-    private var filmeId: Int = -1
+    private var filmeId: Int = 0
 
     private lateinit var edtName: EditText
     private lateinit var edtDirector: EditText
@@ -26,12 +26,12 @@ class DetailActivity : AppCompatActivity() {
 
         filmeDao = FilmeDao(this)
 
-        filmeId = intent.getIntExtra("FILME_ID", -1)
-        if (filmeId == -1) {
+        filmeId = intent.getIntExtra("filmeID", 0)
+        /*if (filmeId == -1) {
             Toast.makeText(this, "Filme inválido", Toast.LENGTH_SHORT).show()
             finish()
             return
-        }
+        }*/
 
         edtName = findViewById(R.id.edtName)
         edtDirector = findViewById(R.id.edtDirector)
@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
         btnSave = findViewById(R.id.btnSave)
         btnDelete = findViewById(R.id.btnDelete)
 
-        loadFilmeDetails()
+        if(filmeId != 0) loadFilmeDetails()
 
         btnSave.setOnClickListener {
             saveFilme()
@@ -77,14 +77,35 @@ class DetailActivity : AppCompatActivity() {
             Toast.makeText(this, "Ano inválido", Toast.LENGTH_SHORT).show()
             return
         }
+        if(filmeId == 0){
+            //Inserção de um novo personagem
+            val newFilm = FilmeModel(
+                name = name,
+                director = director,
+                year = year
+            )
+            val id = filmeDao.addFilme(newFilm)
 
-        val filme = FilmeModel(filmeId, name, director, year)
-        val rows = filmeDao.updateFilme(filme)
-        if (rows > 0) {
-            Toast.makeText(this, "Filme atualizado", Toast.LENGTH_SHORT).show()
-            finish()
-        } else {
-            Toast.makeText(this, "Erro ao atualizar", Toast.LENGTH_SHORT).show()
+            if(id.toInt() == -1){
+                Toast.makeText(this, "Erro ao criar filme", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
+                finish()
+                return
+            }
+
+        }
+        else {
+            val filme = FilmeModel(filmeId, name, director, year)
+            val rows = filmeDao.updateFilme(filme)
+
+            if (rows > 0) {
+                Toast.makeText(this, "Filme atualizado", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "Erro ao atualizar", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
