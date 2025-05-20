@@ -43,6 +43,7 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:text="Nenhum filme cadastrado"
+        android:textAlignment="center"
         android:visibility="gone" />
 
     <TextView
