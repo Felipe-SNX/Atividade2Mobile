@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0"
+        android:baselineAligned="false"
+        android:insetTop="50dp"
         android:onClick="pesquisarFilme"
-        android:text="Pesquisar Filme" />
+        android:text="Pesquisar Filme"
+        app:icon="@android:drawable/ic_menu_search"
+        app:iconPadding="10dp" />
+
+    <TextView
+        android:id="@+id/catalogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:paddingVertical="20dp"
+        android:text="Catálogo"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/lvFilmes"
@@ -25,17 +40,30 @@
         android:id="@+id/tvEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nenhum filme cadastrado"
-        android:visibility="gone"
         android:paddingTop="30dp"
-        android:paddingBottom="30dp"/>
+        android:paddingBottom="30dp"
+        android:text="Nenhum filme cadastrado"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvCatalogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:text="Catálogo"
+        android:visibility="gone" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0"
+        android:baselineAligned="false"
+        android:insetBottom="50dp"
         android:onClick="newFilme"
-        android:text="Adicionar Filme" />
+        android:text="Adicionar Filme"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconPadding="10dp" />
 
 </LinearLayout>
