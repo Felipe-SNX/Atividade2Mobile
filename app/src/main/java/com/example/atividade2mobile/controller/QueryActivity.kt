@@ -93,5 +93,6 @@ class QueryActivity : AppCompatActivity(){
     override fun onResume() {
         super.onResume()
         listAllFilms()
+        pesquisarFilme(searchView.text.toString())
     }
 }
