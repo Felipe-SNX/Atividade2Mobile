@@ -13,9 +13,10 @@ import com.example.atividade2mobile.R
 import com.example.atividade2mobile.data.dao.FilmeDao
 import com.example.atividade2mobile.model.FilmeModel
 
+
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var FilmeDAO: FilmeDao
+    private lateinit var filmeDAO: FilmeDao
     private lateinit var listView: ListView
     private lateinit var emptyTextView: TextView
 
@@ -26,9 +27,8 @@ class MainActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.lvFilmes)
         emptyTextView = findViewById(R.id.tvEmpty)
-        FilmeDAO = FilmeDao(this)
+        filmeDAO = FilmeDao(this)
 
-        saveChar()
         listAllFilmes()
 
         listView.setOnItemClickListener { parent, view, position, id ->
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listAllFilmes(){
-        val filmeModel = FilmeDAO.getAllFilmes()
+        val filmeModel = filmeDAO.getAllFilmes()
         if(filmeModel.isEmpty()){
             listView.visibility = ListView.GONE
             emptyTextView.visibility = TextView.VISIBLE
@@ -70,24 +70,4 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         listAllFilmes()
     }
-
-    fun saveChar(){
-                //Inserção de um novo personagem
-                val newChar = FilmeModel(
-                    name = "Duro de Matar",
-                    director = "John McTiernan",
-                    year = 1988
-                )
-                FilmeDAO.addFilme(newChar)
-                Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
-
-        val newChar2 = FilmeModel(
-            name = "Vingadores",
-            director = "John McTiernan",
-            year = 1988
-        )
-        FilmeDAO.addFilme(newChar2)
-        Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
-    }
-
 }

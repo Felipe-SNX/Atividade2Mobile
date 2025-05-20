@@ -1,11 +1,12 @@
 package com.example.atividade2mobile.data.dao
 
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import com.example.atividade2mobile.data.db.DBHelper
 import com.example.atividade2mobile.model.FilmeModel
 
-class FilmeDao(private val context: DBHelper){
+class FilmeDao(private val context: Context){
     private val dbHelper = DBHelper(context)
 
     fun addFilme(filme: FilmeModel): Long {

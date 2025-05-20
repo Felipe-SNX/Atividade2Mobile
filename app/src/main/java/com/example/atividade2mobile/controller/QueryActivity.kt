@@ -10,8 +10,6 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.atividade2mobile.R
 import com.example.atividade2mobile.data.dao.FilmeDao
 import com.example.atividade2mobile.model.FilmeModel
