@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.atividade2mobile.R
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         emptyTextView = findViewById(R.id.tvEmpty)
         FilmeDAO = FilmeDao(this)
 
+        saveChar()
         listAllFilmes()
 
         listView.setOnItemClickListener { parent, view, position, id ->
@@ -59,8 +61,33 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun pesquisarFilme(view: View){
+        val intent = Intent(this, QueryActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onResume() {
         super.onResume()
         listAllFilmes()
     }
+
+    fun saveChar(){
+                //Inserção de um novo personagem
+                val newChar = FilmeModel(
+                    name = "Duro de Matar",
+                    director = "John McTiernan",
+                    year = 1988
+                )
+                FilmeDAO.addFilme(newChar)
+                Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
+
+        val newChar2 = FilmeModel(
+            name = "Vingadores",
+            director = "John McTiernan",
+            year = 1988
+        )
+        FilmeDAO.addFilme(newChar2)
+        Toast.makeText(this, "Filme adicionado", Toast.LENGTH_SHORT).show()
+    }
+
 }
